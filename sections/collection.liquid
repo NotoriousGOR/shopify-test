@@ -1,0 +1,189 @@
+{% comment %}
+  * Make sure you have the Flickity plugin installed and the proper license for this to function on your store
+  * Plugin, licensing and documentation at https://flickity.metafizzy.co/
+{% endcomment %}
+
+{% assign cell_align = section.settings.cell_align %}
+{% assign wrap_around = section.settings.wrap_around %}
+{% assign img_width = section.settings.img_width | append: 'x' %}
+
+<div class="featured-collection product" style="background-color: {{ section.settings.bg }}">
+  <div class="featured-collection">
+    <div>
+      <h1 class="text-title text-left" style="margin-bottom:{{ section.settings.title_mb }}px">{{ section.settings.title }}<h1/>
+    </div>
+    <div class="carousel carousel-{{section.id }} text-center"
+        data-flickity='{
+          "cellAlign": "{{ cell_align }}",
+          "pageDots": false,
+          "freeScroll": true,
+          "contain": true,
+          "wrapAround": {{ wrap_around }}
+        }'>
+      {% for block in section.blocks %}
+        {% assign block_product = all_products[block.settings.featured_product] %}
+        {% assign block_first_variant = block_product.selected_or_first_available_variant %}
+        {% assign featured_img_src = block_first_variant.featured_img.src | default: block_product.featured_image.src %}
+        {% assign price = block_first_variant.price %}
+        {% assign compare_at_price = block_first_variant.compare_at_price %}
+        <div class="carousel__cell" style="width:{{ section.settings.cell_width }};margin-right:{{ section.settings.mr }}px">
+          {% if block.settings.featured_product != blank %}
+            <a href="{{ block_product.url }}">
+              <img src="{{ featured_img_src | img_url: img_width }}" alt="{{ block_product.featured_img.alt }}" />
+            </a>
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+          <a href="{{ block_product.url }}">
+            <h5>{{ block_product.title }}</h5>
+          </a>
+          {% if compare_at_price > price %}
+            <s class="block-product__compare-at-price">{{ compare_at_price | money }}</s>
+            <p class="block-product__product-price">{{ price | money }}</p>
+          {% else %}
+            <p class="block-product__product-price">{{ price | money }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Flickity Product Section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg",
+        "label": "Background Color"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Flickity Product Slider"
+      },
+      {
+        "type": "range",
+        "id": "img_width",
+        "min": 200,
+        "max": 600,
+        "step": 5,
+        "unit": "px",
+        "label": "Image Width",
+        "default": 200
+      },
+      {
+        "type": "select",
+        "id": "cell_align",
+        "label": "Slide Alignment",
+        "options": [
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "range",
+        "id": "title_mb",
+        "min": 30,
+        "max": 120,
+        "step": 1,
+        "unit": "px",
+        "label": "Title Margin Bottom",
+        "default": 48
+      },
+      {
+        "type": "select",
+        "id": "cell_width",
+        "label": "Choose number of slides to show on start",
+        "options": [
+          {
+            "value": "25%",
+            "label": "Four"
+          },
+          {
+            "value": "20%",
+            "label": "Five"
+          },
+          {
+            "value": "16.6666667%",
+            "label": "Six"
+          },
+          {
+            "value": "12.5%",
+            "label": "Eight"
+          }
+        ],
+        "default": "25%"
+      },
+      {
+        "type": "radio",
+        "id": "wrap_around",
+        "label": "Enable Wrap Around (endless scrolling)",
+        "options": [
+          {
+            "value": "true",
+            "label": "True"
+          },
+          {
+            "value": "false",
+            "label": "False"
+          }
+        ],
+        "default": "true"
+      },
+      {
+        "type": "range",
+        "id": "mr",
+        "min": 0,
+        "max": 48,
+        "step": 1,
+        "unit": "px",
+        "label": "Cell Margin Right",
+        "default": 16,
+        "info": "Save page to see changes."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "slide",
+        "settings": [
+          {
+            "type": "product",
+            "id": "featured_product",
+            "label": "Choose a product"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product Slider",
+        "category": "Slider",
+        "blocks": [
+          {
+            "type": "slide"
+          },
+          {
+            "type": "slide"
+          },
+          {
+            "type": "slide"
+          },
+          {
+            "type": "slide"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
