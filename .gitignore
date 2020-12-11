@@ -1,0 +1,3 @@
+node_modules/
+config/settings_data.json
+config/settings_schema.json
