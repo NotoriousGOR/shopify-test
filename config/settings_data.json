@@ -39,7 +39,6 @@
           "message": true,
           "home_page_only": true,
           "message_text": "Free shipping on all orders over $150",
-          "message_link": "shopify:\/\/collections",
           "color_bg": "#0f3324",
           "color_text": "#ffffff"
         }
@@ -108,13 +107,54 @@
       },
       "collection": {
         "type": "collection",
+        "blocks": {
+          "e57a9c88-4bc6-4de0-add6-8d4554552865": {
+            "type": "slide",
+            "settings": {
+              "featured_product": "product-1"
+            }
+          },
+          "e2dc7825-d806-425e-957b-2c16ce6548f6": {
+            "type": "slide",
+            "settings": {
+              "featured_product": "product-2"
+            }
+          },
+          "19a14ff4-d355-438f-9d07-bbdadb1ad0d5": {
+            "type": "slide",
+            "settings": {
+              "featured_product": "product-3"
+            }
+          },
+          "d3a8f149-13a2-4967-897d-5d68690739d0": {
+            "type": "slide",
+            "settings": {
+              "featured_product": "product-4"
+            }
+          },
+          "ca13733c-9c1d-4a52-955f-d25ab0a743aa": {
+            "type": "slide",
+            "settings": {
+              "featured_product": "product-5"
+            }
+          }
+        },
+        "block_order": [
+          "e57a9c88-4bc6-4de0-add6-8d4554552865",
+          "e2dc7825-d806-425e-957b-2c16ce6548f6",
+          "19a14ff4-d355-438f-9d07-bbdadb1ad0d5",
+          "d3a8f149-13a2-4967-897d-5d68690739d0",
+          "ca13733c-9c1d-4a52-955f-d25ab0a743aa"
+        ],
         "settings": {
-          "title": "Featured collection",
-          "collection": "",
-          "grid": 4,
-          "rows": 2,
-          "show_vendor": false,
-          "show_view_all": false
+          "bg": "rgba(0,0,0,0)",
+          "title": "Our Top Selling Frames",
+          "img_width": 200,
+          "cell_align": "center",
+          "title_mb": 48,
+          "cell_width": "25%",
+          "wrap_around": "true",
+          "mr": 16
         }
       },
       "quotes": {

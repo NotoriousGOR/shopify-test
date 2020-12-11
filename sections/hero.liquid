@@ -22,14 +22,14 @@
          id="Hero-{{ section.id }}"
          data-layout="{{ section.settings.hero_layout }}"
          data-image-loading-animation>
-      {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      {%- assign img_url = section.settings.image-1 | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
       {%- if section.settings.image.width < max_width -%}
         {%- assign slide_width = section.settings.image.width -%}
       {%- endif -%}
       <div class="hero-fixed-width__content">
         <div class="page-width text-center">
           {%- if section.settings.title != blank -%}
-            <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title | escape }}</h2>
+            <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title-1 | escape }}</h2>
           {%- endif -%}
           {%- if section.settings.text != blank -%}
             <div class="rte-setting mega-subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}">{{ section.settings.text }}</div>
@@ -41,7 +41,7 @@
           {%- endif -%}
         </div>
       </div>
-      {%- if section.settings.image != blank -%}
+      {%- if section.settings.image-1 != blank -%}
         <img class="hero-fixed-width__image lazyload lazypreload"
              data-src="{{ img_url }}"
              data-widths="[180, 360, 470, 600, 770, 970, 1060, 1280, 1512, 1728, 2048]"
@@ -60,35 +60,66 @@
         </span>
       {%- endif -%}
       <noscript>
-        <div class="hero-fixed-width__image"{% if section.settings.image %}{% unless section.settings.image.alt == blank %} role="img" aria-label="{{ section.settings.image.alt | escape }}"{% endunless %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}></div>
+        <div class="hero-fixed-width__image"{% if section.settings.image-1 %}{% unless section.settings.image.alt == blank %} role="img" aria-label="{{ section.settings.image.alt | escape }}"{% endunless %} style="background-image: url('{{ section.settings.image-1 | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}></div>
       </noscript>
     </div>
   {%- else -%}
-    <div class="hero hero--{{ section.settings.hero_size }} hero-{{ section.id }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %} box ratio-container lazyload js"
+    <div class="hero hero--{{ section.settings.hero_size }} hero-{{ section.id }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %} box lazyload js"
          id="Hero-{{ section.id }}"
          data-layout="{{ section.settings.hero_layout }}"
-         {%- if section.settings.image -%}
+         {%- if section.settings.image-1 -%}
           {% unless section.settings.image.alt == blank %}
           role="img"
           aria-label="{{ section.settings.image.alt | escape }}"
           data-alt="{{ section.settings.image.alt | escape }}"
           {% endunless %}
-         data-bg="{{ section.settings.image | img_url: '300x300' }}"
-         data-bgset="{% include 'bgset', image: section.settings.image %}"
+         data-bg="{{ section.settings.image-1 | img_url: '300x300' }}"
+         data-bgset="{% include 'bgset', image: section.settings.image-1 %}"
          data-sizes="auto"
          data-parent-fit="cover"
          style="background-position: {{ section.settings.alignment }};"
          data-image-loading-animation
          {%- endif -%}>
-    {%- if section.settings.image == blank -%}
+    {%- if section.settings.image-1 == blank -%}
+      <div class="placeholder-background">
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
       <div class="placeholder-background">
         {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
       </div>
     {%- endif -%}
       <div class="hero__inner">
         <div class="page-width text-center">
-          {%- if section.settings.title != blank -%}
-            <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title | escape }}</h2>
+          {%- if section.settings.title-1 != blank -%}
+            <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title-1 | escape }}</h2>
+          {%- endif -%}
+          {%- if section.settings.text != blank -%}
+            <div class="rte-setting mega-subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}">{{ section.settings.text }}</div>
+          {%- endif -%}
+          {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+            {%- capture ariaLabel -%}
+              {{- section.settings.button_label -}}
+              {%- if section.settings.button_link.type == 'frontpage_link' -%}
+                : {{ 'homepage.general.title' | t -}}
+              {%- elsif section.settings.button_link.type == 'catalog_link' -%}
+                : {{ 'collections.catalog.title' | t -}}
+              {%- elsif section.settings.button_link.object.title -%}
+                : {{ section.settings.button_link.object.title -}}
+              {%- endif -%}
+            {%- endcapture -%}
+
+            <a href="{{ section.settings.button_link }}"
+              class="btn hero__btn"
+              aria-label="{{ ariaLabel }}">
+              {{- section.settings.button_label | escape -}}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="hero__inner">
+        <div class="page-width text-center">
+          {%- if section.settings.title-2 != blank -%}
+            <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title-2 | escape }}</h2>
           {%- endif -%}
           {%- if section.settings.text != blank -%}
             <div class="rte-setting mega-subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}">{{ section.settings.text }}</div>
@@ -118,10 +149,17 @@
       <div class="hero hero--{{ section.settings.hero_size }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %}"{% if section.settings.image %}{% unless section.settings.image.alt == blank %} role="img" aria-label="{{ section.settings.image.alt | escape }}"{% endunless %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}></div>
     </noscript>
   {%- endif -%}
+  
+  <!-- image-2 block -->
+    
   {%- if section.settings.hero_layout == 'fixed_width' -%}
     </div>
   {%- endif -%}
 </div>
+<script>
+  console.log({{ section.settings | json}});
+
+</script>
 
 {% schema %}
 {
@@ -152,7 +190,34 @@
   "settings": [
     {
       "type": "image_picker",
-      "id": "image",
+      "id": "image-1",
+      "label": {
+        "cs": "Obrázek",
+        "da": "Billede",
+        "de": "Foto",
+        "en": "Image",
+        "es": "Imagen",
+        "fi": "Kuva",
+        "fr": "Image",
+        "it": "Immagine",
+        "ja": "画像",
+        "ko": "이미지",
+        "nb": "Bilde",
+        "nl": "Afbeelding",
+        "pl": "Obraz",
+        "pt-BR": "Imagem",
+        "pt-PT": "Imagem",
+        "sv": "Bild",
+        "th": "รูปภาพ",
+        "tr": "Görsel",
+        "vi": "Hình ảnh",
+        "zh-CN": "图片",
+        "zh-TW": "圖片"
+      }
+    },
+    {
+      "type": "image_picker",
+      "id": "image-2",
       "label": {
         "cs": "Obrázek",
         "da": "Billede",
@@ -637,7 +702,7 @@
     },
     {
       "type": "text",
-      "id": "title",
+      "id": "title-1",
       "label": {
         "cs": "Nadpis",
         "da": "Overskrift",
@@ -665,7 +730,7 @@
         "cs": "Obrázek s textovým překryvem",
         "da": "Billede med tekstoverlejring",
         "de": "Foto mit überlegtem Text",
-        "en": "Image with text overlay",
+        "en": "PLP 1",
         "es": "Imagen con texto superpuesto",
         "fi": "Kuva päällä olevalla tekstillä",
         "fr": "Image avec calque texte",
@@ -686,53 +751,53 @@
       }
     },
     {
-      "type": "richtext",
-      "id": "text",
+      "type": "text",
+      "id": "title-2",
       "label": {
-        "cs": "Text",
-        "da": "Tekst",
-        "de": "Text",
-        "en": "Text",
-        "es": "Texto",
-        "fi": "Teksti",
-        "fr": "Texte",
-        "it": "Testo",
-        "ja": "テキスト",
-        "ko": "텍스트",
-        "nb": "Tekst",
-        "nl": "Tekst",
-        "pl": "Tekst",
-        "pt-BR": "Texto",
-        "pt-PT": "Texto",
-        "sv": "Text",
-        "th": "ข้อความ",
-        "tr": "Metin",
-        "vi": "Văn bản",
-        "zh-CN": "文本",
-        "zh-TW": "文字"
+        "cs": "Nadpis",
+        "da": "Overskrift",
+        "de": "Titel",
+        "en": "Heading",
+        "es": "Título",
+        "fi": "Otsake",
+        "fr": "En-tête",
+        "it": "Heading",
+        "ja": "見出し",
+        "ko": "제목",
+        "nb": "Overskrift",
+        "nl": "Kop",
+        "pl": "Nagłówek",
+        "pt-BR": "Título",
+        "pt-PT": "Título",
+        "sv": "Rubrik",
+        "th": "ส่วนหัว",
+        "tr": "Başlık",
+        "vi": "Tiêu đề",
+        "zh-CN": "标题",
+        "zh-TW": "標題"
       },
       "default": {
-        "cs": "<p>Prostřednictvím textového překryvu můžete zákazníkům prezentovat svoji značku. Vyberte obrázky, design a text, který reflektuje váš styl i firmu.</p>",
-        "da": "<p>Brug tekstoverlejring til at give dine kunder indblik i dit brand. Vælg billeder og tekst, der passer til din stil og historie.</p>",
-        "de": "<p>Nutzen Sie überlegten Text, um Kunden über Ihre Marke zu informieren. Wählen Sie Fotos und Text aus, die zu Ihrer Marke passen.</p>",
-        "en": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
-        "es": "<p>Usa el texto superpuesto para darles información útil a tus clientes sobre tu marca. Selecciona imágenes y textos que se relacionen con tu estilo e historia.</p>",
-        "fi": "<p>Käytä taustan päällä olevaa tekstiä, jotta asiakkaat voivat tutustua tuotemerkkisi. Valitse tyylisi ja tarinasi liittyvät kuvat ja teksti.</p>",
-        "fr": "<p>Utilisez la superposition de texte pour donner un aperçu de votre marque à vos clients. Utilisez une image et du texte qui se rapportent au style et à l'histoire de votre marque.</p>",
-        "it": "<p>Utilizza il testo in sovrapposizione per dare ai clienti informazioni sul tuo brand. Seleziona immagini e testo legati al tuo stile e alla tua storia.</p>",
-        "ja": "<p>オーバーレイテキストを使用して、お客様があなたのブランドについてよく理解できるようにします。あなたのスタイルやストーリーに関連する画像やテキストを選択してください。</p>",
-        "ko": "<p>오버레이 텍스트를 사용하여 고객에게 브랜드에 대한 통찰력을 부여하십시오. 자신의 스타일과 이야기와 관련된 이미지와 텍스트를 선택하십시오.</p>",
-        "nb": "<p>Bruk overleggstekst til å gi kundene dine innsikt i merkevaren din. Velg bildebruk og tekst som er relatert til din stil og historie.</p>",
-        "nl": "<p>Gebruik overlay-tekst om je klanten inzicht te geven in je merk. Selecteer afbeeldingen en tekst die betrekking hebben op je stijl en verhaal.</p>",
-        "pl": "<p>Użyj tekstu nakładki, aby dać swoim klientom wgląd w Twoją markę. Wybierz obrazy i teksty, które odnoszą się do Twojego stylu i historii.</p>",
-        "pt-BR": "<p>Use o texto de sobreposição para apresentar insights sobre sua marca aos clientes. Selecione imagens e textos que reflitam seu estilo e sua história.</p>",
-        "pt-PT": "<p>Utilize o texto de sobreposição para fornecer informações sobre a sua marca aos clientes. Selecione imagens e textos que reflitam o seu estilo e a sua história.</p>",
-        "sv": "<p>Använd överläggningstext för att ge dina kunder inblick i ditt varumärke. Välj bildspråk och text som gäller din stil och historia.</p>",
-        "th": "<p>ใช้ข้อความซ้อนทับเพื่อให้ลูกค้าของคุณทราบถึงรายละเอียดเกี่ยวกับแบรนด์ เลือกรูปภาพและข้อความที่มีความเกี่ยวข้องกับสไตล์กับเรื่องราวของคุณ</p>",
-        "tr": "<p>Yer paylaşımlı metin kullanarak müşterilerinizin kafasında mağazanız hakkında fikir oluşmasını sağlayın. Stilinize ve öykünüze uyan görseller ve metinler seçin.</p>",
-        "vi": "<p>Sử dụng lớp phủ văn bản để đưa thông tin chi tiết khách hàng vào thương hiệu của bạn. Chọn hình ảnh và văn bản phù hợp với phong cách và câu chuyện của bạn.</p>",
-        "zh-CN": "<p>使用叠加文本让客户深入了解您的品牌。选择与您的风格和故事相关的图片和文本。</p>",
-        "zh-TW": "<p>運用文字疊加層讓顧客更加瞭解您的品牌。選擇與您風格和品牌故事相關的圖像和文字。</p>"
+        "cs": "Obrázek s textovým překryvem",
+        "da": "Billede med tekstoverlejring",
+        "de": "Foto mit überlegtem Text",
+        "en": "PLP 2",
+        "es": "Imagen con texto superpuesto",
+        "fi": "Kuva päällä olevalla tekstillä",
+        "fr": "Image avec calque texte",
+        "it": "Immagine con testo",
+        "ja": "テキストオーバーレイ付き画像",
+        "ko": "텍스트 오버레이 포함 이미지",
+        "nb": "Bilde med tekstoverlegg",
+        "nl": "Foto met tekstoverlay",
+        "pl": "Obraz z nakładką tekstową",
+        "pt-BR": "Imagem com sobreposição de texto",
+        "pt-PT": "Imagem com sobreposição de texto",
+        "sv": "Bild med textöverlagring",
+        "th": "การวางซ้อนรูปภาพพร้อมข้อความ",
+        "tr": "Metin katmanı içeren görsel",
+        "vi": "Hình ảnh có lớp phủ văn bản",
+        "zh-CN": "带文本叠加的图片",
+        "zh-TW": "附文字疊加層的圖片"
       }
     },
     {

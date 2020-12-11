@@ -7626,8 +7626,10 @@ hr {
 .hero {
   position: relative;
   height: 475px;
-  display: table;
+  display: flex;
+  flex-direction:row;
   width: 100%;
+  align-items: stretch;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -7695,9 +7697,9 @@ hr {
 }
 
 .hero__inner {
-  position: relative;
+  /* position: relative;
   display: table-cell;
-  vertical-align: middle;
+  vertical-align: middle; */
   padding: 55px 0;
   z-index: 2;
 }
@@ -9144,28 +9146,4 @@ hr {
 
 .store-availability-list__phone {
   margin-bottom: 0;
-}
-
-/* custom css begins */
-
-/* Header */
-
-a.site-nav__link {
-  margin: auto 30px;
-  text-transform: uppercase;
-  font-weight: bolder;
-}
-
-/* easy to use classes */
-
-.is-justify-center {
-  justify-content: center;
-}
-
-.algin-center {
-  align-self: center;
-}
-
-.align-end {
-  align-self: flex-end;
 }

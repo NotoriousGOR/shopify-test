@@ -14,11 +14,15 @@
     </div>
     <div class="carousel carousel-{{section.id }} text-center"
         data-flickity='{
-          "cellAlign": "{{ cell_align }}",
-          "pageDots": false,
+          "cellAlign": "left",
+          "pageDots": true,
           "freeScroll": true,
           "contain": true,
-          "wrapAround": {{ wrap_around }}
+          "wrapAround": true,
+          "groupCells": "90%",
+          "autoPlay": true,
+          "prevNextButtons": false
+
         }'>
       {% for block in section.blocks %}
         {% assign block_product = all_products[block.settings.featured_product] %}
@@ -37,12 +41,7 @@
           <a href="{{ block_product.url }}">
             <h5>{{ block_product.title }}</h5>
           </a>
-          {% if compare_at_price > price %}
-            <s class="block-product__compare-at-price">{{ compare_at_price | money }}</s>
-            <p class="block-product__product-price">{{ price | money }}</p>
-          {% else %}
-            <p class="block-product__product-price">{{ price | money }}</p>
-          {% endif %}
+          <p class="block-product__product-price">{{ price | money }}</p>
         </div>
       {% endfor %}
     </div>

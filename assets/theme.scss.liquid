@@ -1,3 +1,74 @@
+
+/* Header */
+
+ul.site-nav {
+  li {
+    margin: auto 2%;
+    text-transform: uppercase;
+    font-weight: bolder;
+  }
+}
+
+@media only screen and (max-width: 749px) {
+  p.announcement-bar_submessage {
+    display: none;
+  }
+}
+
+// customizing the hero
+
+div.hero {
+  .hero__inner {
+    min-width: 50%;
+  }
+}
+
+@media only screen and (max-width: 749px) {
+  div.hero {
+    flex-direction: column;
+    .hero__inner {
+      width: auto;
+    }
+  }
+}
+
+// customizing the slider
+
+div.flickity-slider {
+  div.carousel__cell {
+    background-color: #e9e9e7;
+    // max-height: 100%;
+  }
+}
+
+ol.flickity-page-dots {
+  bottom: -22px;
+  max-width:90vw;
+  margin-left: 1%;
+}
+/* dots are lines */
+.flickity-page-dots li.dot {
+  height: 4px;
+  width: 45vw;
+  border: 2px solid #897C51;
+  margin: 0;
+  border-radius: 0;
+}
+
+/* easy to use classes */
+
+.is-justify-center {
+  justify-content: center;
+}
+
+.algin-center {
+  align-self: center;
+}
+
+.align-end {
+  align-self: flex-end;
+}
+
 .featured-collection {
-    margin: 3%;
+  margin: 1%;
 }
