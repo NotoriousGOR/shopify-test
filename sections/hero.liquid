@@ -88,7 +88,7 @@
       <div class="hero__inner">
         <div class="page-width text-center">
           {%- if section.settings.title-1 != blank -%}
-            <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title-1 | escape }}</h2>
+          <a class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}" href="{{ section.settings.link-1 | escape }}">{{ section.settings.title-1 | escape }}</a>
           {%- endif -%}
           {%- if section.settings.text != blank -%}
             <div class="rte-setting mega-subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}">{{ section.settings.text }}</div>
@@ -147,7 +147,7 @@
     <div class="hero__inner">
       <div class="page-width text-center">
         {%- if section.settings.title-2 != blank -%}
-          <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title-2 | escape }}</h2>
+        <a class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}" href="{{ section.settings.link-2 | escape }}">{{ section.settings.title-2 | escape }}</a>
         {%- endif -%}
         {%- if section.settings.text != blank -%}
           <div class="rte-setting mega-subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}">{{ section.settings.text }}</div>
@@ -780,6 +780,33 @@
       }
     },
     {
+      "type": "url",
+      "id": "link-1",
+      "label": {
+        "cs": "Nadpis",
+        "da": "Overskrift",
+        "de": "Titel",
+        "en": "Link 1",
+        "es": "Título",
+        "fi": "Otsake",
+        "fr": "En-tête",
+        "it": "Heading",
+        "ja": "見出し",
+        "ko": "제목",
+        "nb": "Overskrift",
+        "nl": "Kop",
+        "pl": "Nagłówek",
+        "pt-BR": "Título",
+        "pt-PT": "Título",
+        "sv": "Rubrik",
+        "th": "ส่วนหัว",
+        "tr": "Başlık",
+        "vi": "Tiêu đề",
+        "zh-CN": "标题",
+        "zh-TW": "標題"
+      }
+    },
+    {
       "type": "text",
       "id": "title-2",
       "label": {
@@ -830,57 +857,30 @@
       }
     },
     {
-      "type": "text",
-      "id": "button_label",
-      "label": {
-        "cs": "Text tlačítka",
-        "da": "Knaptekst",
-        "de": "Button-Etikett",
-        "en": "Button label",
-        "es": "Etiqueta de botón",
-        "fi": "Tekstipainike",
-        "fr": "Texte du bouton",
-        "it": "Etichetta pulsante",
-        "ja": "ボタンのラベル",
-        "ko": "버튼 레이블",
-        "nb": "Knappetikett",
-        "nl": "Knoplabel",
-        "pl": "Przycisk z etykietą",
-        "pt-BR": "Etiqueta de botão",
-        "pt-PT": "Etiqueta do botão",
-        "sv": "Knappetikett",
-        "th": "ป้ายกำกับปุ่ม",
-        "tr": "Düğme etiketi",
-        "vi": "Nhãn nút",
-        "zh-CN": "按钮标签",
-        "zh-TW": "按鈕標籤"
-      }
-    },
-    {
       "type": "url",
-      "id": "button_link",
+      "id": "link-2",
       "label": {
-        "cs": "Tlačítkový odkaz",
-        "da": "Knaplink",
-        "de": "Button-Etikett",
-        "en": "Button link",
-        "es": "Enlace de botón",
-        "fi": "Painikelinkki",
-        "fr": "Lien du bouton",
-        "it": "Link pulsante",
-        "ja": "ボタンのリンク",
-        "ko": "버튼 링크",
-        "nb": "Kobling for knapp",
-        "nl": "Knoplink",
-        "pl": "Link przycisku",
-        "pt-BR": "Link de botão",
-        "pt-PT": "Ligação do botão",
-        "sv": "Knapplänk",
-        "th": "ลิงก์ปุ่ม",
-        "tr": "Düğme bağlantısı",
-        "vi": "Liên kết trên nút",
-        "zh-CN": "按钮链接",
-        "zh-TW": "按鈕連結"
+        "cs": "Nadpis",
+        "da": "Overskrift",
+        "de": "Titel",
+        "en": "Link 2",
+        "es": "Título",
+        "fi": "Otsake",
+        "fr": "En-tête",
+        "it": "Heading",
+        "ja": "見出し",
+        "ko": "제목",
+        "nb": "Overskrift",
+        "nl": "Kop",
+        "pl": "Nagłówek",
+        "pt-BR": "Título",
+        "pt-PT": "Título",
+        "sv": "Rubrik",
+        "th": "ส่วนหัว",
+        "tr": "Başlık",
+        "vi": "Tiêu đề",
+        "zh-CN": "标题",
+        "zh-TW": "標題"
       }
     }
   ],
