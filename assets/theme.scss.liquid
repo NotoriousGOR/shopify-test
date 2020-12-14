@@ -1,11 +1,22 @@
-
 /* Header */
 
 ul.site-nav {
   li {
     margin: auto 2%;
     text-transform: uppercase;
-    font-weight: bolder;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 24px;
+  }
+}
+
+div.announcement-bar {
+  p {
+    margin: auto 0;
+    color: white;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
   }
 }
 
@@ -13,12 +24,43 @@ ul.site-nav {
   p.announcement-bar_submessage {
     display: none;
   }
+
+  header.site-header {
+    .site-header__mobile-nav {
+      max-height: 64px;
+
+      // a > img.js {
+      //   max-width: 32px;
+      // }
+    }
+  }
+}
+
+.featured-collection {
+  margin: 1%;
+
+  @media only screen and (min-width: 800px) {
+    .text-title {
+      font-size: 2.5em;
+    }
+  }
+}
+
+@media only screen and (max-width: 749px) {
+  .text-title {
+    font-size: 1.7rem;
+  }
 }
 
 // customizing the hero
 
 div.hero {
   .hero__inner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     min-width: 50%;
   }
 }
@@ -37,20 +79,32 @@ div.hero {
 div.flickity-slider {
   div.carousel__cell {
     background-color: #e9e9e7;
-    // max-height: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  div.flickity-slider {
+    div.carousel__cell {
+      width: 100% !important;
+    }
+  }
+
+  .flickity-page-dots li.dot {
+    width: 17vw !important;
   }
 }
 
 ol.flickity-page-dots {
   bottom: -22px;
-  max-width:90vw;
+  max-width: 90vw;
   margin-left: 1%;
 }
+
 /* dots are lines */
 .flickity-page-dots li.dot {
   height: 4px;
   width: 45vw;
-  border: 2px solid #897C51;
+  border: 2px solid #897c51;
   margin: 0;
   border-radius: 0;
 }
@@ -69,6 +123,17 @@ ol.flickity-page-dots {
   align-self: flex-end;
 }
 
-.featured-collection {
-  margin: 1%;
+.is-flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+@media only screen and (max-width: 749px) {
+  div.mobile-flex-column {
+    flex-direction: column;
+    max-height: 75vh;
+  }
 }
