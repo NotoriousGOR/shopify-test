@@ -1,7 +1,4 @@
-{% comment %}
-  * Make sure you have the Flickity plugin installed and the proper license for this to function on your store
-  * Plugin, licensing and documentation at https://flickity.metafizzy.co/
-{% endcomment %}
+
 
 {% assign cell_align = section.settings.cell_align %}
 {% assign wrap_around = section.settings.wrap_around %}
@@ -31,13 +28,15 @@
         {% assign price = block_first_variant.price %}
         {% assign compare_at_price = block_first_variant.compare_at_price %}
         <div class="carousel__cell" style="width:{{ section.settings.cell_width }};margin-right:{{ section.settings.mr }}px">
-          {% if block.settings.featured_product != blank %}
+          <div class="image-wrapper">
+            {% if block.settings.featured_product != blank %}
             <a href="{{ block_product.url }}">
               <img src="{{ featured_img_src | img_url: img_width }}" alt="{{ block_product.featured_img.alt }}" />
             </a>
           {% else %}
             {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
           {% endif %}
+          </div>
           <a href="{{ block_product.url }}">
             <h5>{{ block_product.title }}</h5>
           </a>
