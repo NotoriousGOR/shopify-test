@@ -23,7 +23,7 @@ gulp.task("combine_css", (done) => {
       
     
       //Custom
-      "assets/styles/custom.scss",
+      "assets/custom.scss",
     ])
     .pipe(combine())
     .pipe(concat("theme.scss.liquid"))
